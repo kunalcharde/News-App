@@ -1,6 +1,6 @@
 const access_key="a44de784b0204e87ba653bb103ad5d62"
 const url=`
-https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${access_key}`
+https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${access_key}`
 let title= document.getElementById("title");
 let content= document.getElementById("title-content");
 let output= document.getElementById("output")
@@ -23,6 +23,7 @@ promise.then((data)=>{
     // console.log(data.articles[0])
     // console.log(data.articles[0].title)
     // console.log(data.articles[0].content)
+    console.log(data.articles[0])
     let display="";
     data.articles.forEach((article,index)=>{
         display+=
@@ -36,8 +37,13 @@ promise.then((data)=>{
               </h2>
               <div id="flush-collapse${index}" class="accordion-collapse collapse" aria-labelledby="flush-heading${index}" data-bs-parent="#newsAccordion">
               <div class="accordion-item">
+                <div class="accordion-body text-center">
+                  <img src="${data.articles[index].urlToImage}" class="img">
+                </div>
+              </div>
+              <div class="accordion-item">
                 <div class="accordion-body">
-                  <p>${data.articles[index].content}</p>
+                  <p>"${data.articles[index].content}"<a href="${data.articles[index].url}"target="_blank">Read More</a></p>
                 </div>
               </div>
             </div>
