@@ -18,6 +18,7 @@ let promise = new Promise((resolve,reject)=>{
         }
     }) 
 })
+
 promise.then((data)=>{
     // console.log(data.articles)
     // console.log(data.articles[0])
