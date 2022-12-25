@@ -1,32 +1,32 @@
-const access_key="a44de784b0204e87ba653bb103ad5d62"
-const url=`
-https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${access_key}`
-let title= document.getElementById("title");
-let content= document.getElementById("title-content");
-let output= document.getElementById("output")
-let promise = new Promise((resolve,reject)=>{
-    let fetchRequest=fetch(url)
-    let response =fetchRequest.then((data)=>{
-        return data.json()
-    }).then((data)=>{
-        // console.log(data.status)
-        if(data.status === 'ok'){
-            resolve(data)
-        }
-        else{
-            reject(data.message)
-        }
-    }) 
-})
-promise.then((data)=>{
+const access_key = "a44de784b0204e87ba653bb103ad5d62";
+const url = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${access_key}`;
+let title = document.getElementById("title");
+let content = document.getElementById("title-content");
+let output = document.getElementById("output");
+let promise = new Promise((resolve, reject) => {
+  let fetchRequest = fetch(url);
+  let response = fetchRequest
+    .then((data) => {
+      return data.json();
+    })
+    .then((data) => {
+      // console.log(data.status)
+      if (data.status === "ok") {
+        resolve(data);
+      } else {
+        reject(data.message);
+      }
+    });
+});
+promise
+  .then((data) => {
     // console.log(data.articles)
     // console.log(data.articles[0])
     // console.log(data.articles[0].title)
     // console.log(data.articles[0].content)
-    let display="";
-    data.articles.forEach((article,index)=>{
-        display+=
-        `
+    let display = "";
+    data.articles.forEach((article, index) => {
+      display += `
         <div class="accordion accordion-flush" id="newsAccordion">
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-heading${index}">
@@ -44,7 +44,8 @@ promise.then((data)=>{
         </div>
          `;
     });
-    output.innerHTML=display;
-}).catch((err)=>{
-    console.log(err)
-})
+    output.innerHTML = display;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
